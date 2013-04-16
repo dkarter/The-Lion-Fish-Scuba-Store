@@ -12,6 +12,15 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree ./angularjs/
 //= require_tree ./bootstrap/
 //= require_tree .
+
+
+$(document).ready(function($) {
+	$(function() {
+    	$('.datetimepicker').datetimepicker({
+      		language: 'en',
+      		pick12HourFormat: false
+    	});
+	});
+});

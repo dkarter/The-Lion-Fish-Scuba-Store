@@ -1,4 +1,6 @@
 LFSS::Application.routes.draw do
+  resources :tours
+
   resources :customers
 
   get "welcome/index"

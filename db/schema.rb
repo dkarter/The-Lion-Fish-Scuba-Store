@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130414035535) do
+ActiveRecord::Schema.define(:version => 20130416161448) do
 
   create_table "customers", :force => true do |t|
     t.string   "name"
@@ -26,6 +26,19 @@ ActiveRecord::Schema.define(:version => 20130414035535) do
     t.string   "cc_exp_date"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "tours", :force => true do |t|
+    t.string   "name"
+    t.string   "location"
+    t.string   "description"
+    t.datetime "start_time"
+    t.decimal  "duration"
+    t.integer  "seats_available"
+    t.decimal  "price"
+    t.integer  "status"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
 end
