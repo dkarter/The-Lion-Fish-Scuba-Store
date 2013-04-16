@@ -1,0 +1,53 @@
+<h1>Customers</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zipcode</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="customer in customers">
+      <td>
+        <a href="/customers/{{customer.id}}">
+          {{customer.name}}
+        </a>
+      </td>
+        <td>
+          {{customer.email}}
+        </td>
+        <td>
+          {{customer.address}}
+        </td>
+        <td>
+          {{customer.city}}
+        </td>
+        <td>
+          {{customer.state}}
+        </td>
+        <td>
+          {{customer.zipcode}}
+        </td>
+      <td>
+        <a href="/customers/{{customer.id}}/edit"
+          class="btn btn-primary"><i class="icon-edit"></i>
+          Edit
+        </a>
+        <button ng-click="destroy()" class="btn btn-danger">
+          <i class="icon-trash"></i> Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  <a href='/customers/new' class="btn btn-primary">
+    <i class="icon-plus"></i>New
+  </a>
+</p>

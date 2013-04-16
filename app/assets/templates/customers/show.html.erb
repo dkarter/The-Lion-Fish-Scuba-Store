@@ -1,0 +1,46 @@
+<h1>Customer</h1>
+
+<p>
+  <b>Name</b><br>
+  {{customer.name}}
+</p>
+
+<p>
+  <b>Email</b><br>
+  {{customer.email}}
+</p>
+
+<p>
+  <b>Address</b><br>
+  {{customer.address}}
+</p>
+
+<p>
+  <b>City</b><br>
+  {{customer.city}}
+</p>
+
+<p>
+  <b>State</b><br>
+  {{customer.state}}
+</p>
+
+<p>
+  <b>Zipcode</b><br>
+  {{customer.zipcode}}
+</p>
+
+
+<div class="form-actions">
+  <a href="/customers/{{customer.id}}/edit"
+    class="btn btn-primary"><i class="icon-edit"></i>
+    Edit Customer
+  </a>
+  <button ng-click="destroy()" class="btn btn-danger">
+    <i class="icon-trash"></i> Delete
+  </button>
+  <a href="/customers" class="btn">
+    Back to customers
+  </a>
+</div>
+

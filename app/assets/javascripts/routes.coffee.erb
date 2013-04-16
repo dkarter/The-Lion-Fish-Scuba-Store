@@ -1,0 +1,27 @@
+root = global ? window
+angular = root.angular
+
+thisApp = angular.module("LFSSClient", ['ngCookies', 'customers']).config(['$routeProvider', '$locationProvider' , 
+($routeProvider, $locationProvider) ->
+  #$locationProvider.hashPrefix('');
+  $locationProvider.html5Mode true
+  $routeProvider.when("/",
+    controller: "WelcomeCtrl"
+    templateUrl: "<%= asset_path('welcome/index.html') %>"
+  ).when("/customers", 
+    controller: CustomersIndexCtrl
+    templateUrl: '<%= asset_path("customers/index.html") %>'
+  ).when("/customers/new",
+    controller: CustomersCreateCtrl
+    templateUrl: '<%= asset_path("customers/new.html") %>'
+  ).when("/customers/:id",
+    controller: CustomersShowCtrl
+    templateUrl: '<%= asset_path("customers/show.html") %>'
+  ).when("/customers/:id/edit",
+    controller: CustomersEditCtrl
+    templateUrl: '<%= asset_path("customers/edit.html") %>'
+  ).otherwise redirectTo: "/"
+])
+
+root.thisApp = thisApp
+

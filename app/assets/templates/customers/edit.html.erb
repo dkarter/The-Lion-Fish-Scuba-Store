@@ -1,0 +1,182 @@
+<form name="editCustomer">
+  <fieldset>
+    <legend>
+      Edit Customer
+    </legend>
+      <div class="control-group">
+        <label class="control-label">
+          Name
+        </label>
+        <div class="controls">
+            <input type="text"
+                   name="customer[name]"
+                   ng-model="customer.name"
+                   class="text_field"
+                   required>
+          <span ng-show="editCustomer.name.$error.required"
+                class="help-inline">
+            Required
+          </span>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">
+          Email
+        </label>
+        <div class="controls">
+            <input type="text"
+                   name="customer[email]"
+                   ng-model="customer.email"
+                   class="text_field"
+                   required>
+          <span ng-show="editCustomer.email.$error.required"
+                class="help-inline">
+            Required
+          </span>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">
+          Address
+        </label>
+        <div class="controls">
+            <input type="text"
+                   name="customer[address]"
+                   ng-model="customer.address"
+                   class="text_field"
+                   required>
+          <span ng-show="editCustomer.address.$error.required"
+                class="help-inline">
+            Required
+          </span>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">
+          City
+        </label>
+        <div class="controls">
+            <input type="text"
+                   name="customer[city]"
+                   ng-model="customer.city"
+                   class="text_field"
+                   required>
+          <span ng-show="editCustomer.city.$error.required"
+                class="help-inline">
+            Required
+          </span>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">
+          State
+        </label>
+        <div class="controls">
+            <input type="text"
+                   name="customer[state]"
+                   ng-model="customer.state"
+                   class="text_field"
+                   required>
+          <span ng-show="editCustomer.state.$error.required"
+                class="help-inline">
+            Required
+          </span>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">
+          Zipcode
+        </label>
+        <div class="controls">
+            <input type="text"
+                   name="customer[zipcode]"
+                   ng-model="customer.zipcode"
+                   class="text_field"
+                   required>
+          <span ng-show="editCustomer.zipcode.$error.required"
+                class="help-inline">
+            Required
+          </span>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">
+          Cc
+        </label>
+        <div class="controls">
+            <input type="text"
+                   name="customer[cc]"
+                   ng-model="customer.cc"
+                   class="text_field"
+                   required>
+          <span ng-show="editCustomer.cc.$error.required"
+                class="help-inline">
+            Required
+          </span>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">
+          Ccv
+        </label>
+        <div class="controls">
+            <input type="text"
+                   name="customer[ccv]"
+                   ng-model="customer.ccv"
+                   class="text_field"
+                   required>
+          <span ng-show="editCustomer.ccv.$error.required"
+                class="help-inline">
+            Required
+          </span>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">
+          Cc Name
+        </label>
+        <div class="controls">
+            <input type="text"
+                   name="customer[cc_name]"
+                   ng-model="customer.cc_name"
+                   class="text_field"
+                   required>
+          <span ng-show="editCustomer.cc_name.$error.required"
+                class="help-inline">
+            Required
+          </span>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">
+          Cc Exp Date
+        </label>
+        <div class="controls">
+            <input type="text"
+                   name="customer[cc_exp_date]"
+                   ng-model="customer.cc_exp_date"
+                   class="text_field"
+                   required>
+          <span ng-show="editCustomer.cc_exp_date.$error.required"
+                class="help-inline">
+            Required
+          </span>
+        </div>
+      </div>
+    <div class="form-actions">
+      <button class="btn btn-success" ng-click="save()"
+        ng-disabled="isClean() || editCustomer.$invalid">
+        Save
+      </button>
+      <button ng-click="destroy()"
+              ng-show="customer.id"
+              class="btn btn-danger">
+              <i class="icon-trash"></i>Delete
+      </button>
+      <a href="/customers" class="btn">
+        Back to customers
+      </a>
+    </div>
+  </fieldset>
+</form>
+

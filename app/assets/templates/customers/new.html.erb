@@ -1,0 +1,97 @@
+<form name="newCustomer">
+  <fieldset>
+    <legend>
+      New Customer
+    </legend>
+      <div class="control-group">
+        <label class="control-label">
+          Name
+        </label>
+        <div class="controls">
+            <input type="text"
+                   name="customer[name]"
+                   ng-model="customer.name"
+                   class="text_field"
+                   required>
+          <span ng-show="newCustomer.name.$error.required"
+                class="help-inline">
+            Required
+          </span>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">
+          Email
+        </label>
+        <div class="controls">
+            <input type="text"
+                   name="customer[email]"
+                   ng-model="customer.email"
+                   class="text_field"
+                   required>
+          <span ng-show="newCustomer.email.$error.required"
+                class="help-inline">
+            Required
+          </span>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">
+          Address
+        </label>
+        <div class="controls">
+            <input type="text"
+                   name="customer[address]"
+                   ng-model="customer.address"
+                   class="text_field">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">
+          City
+        </label>
+        <div class="controls">
+            <input type="text"
+                   name="customer[city]"
+                   ng-model="customer.city"
+                   class="text_field">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">
+          State
+        </label>
+        <div class="controls">
+            <input type="text"
+                   name="customer[state]"
+                   ng-model="customer.state"
+                   class="text_field">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">
+          Zipcode
+        </label>
+        <div class="controls">
+            <input type="text"
+                   name="customer[zipcode]"
+                   ng-model="customer.zipcode"
+                   class="text_field">
+          
+        </div>
+      </div>
+    <div class="form-actions">
+      <button class="btn btn-success save-button" ng-click="save()"
+        ng-disabled="isClean() || newCustomer.$invalid">
+        <i class="icon-save"></i> Save
+      </button>
+      <button ng-click="destroy()"
+              ng-show="customer.id"
+              class="btn btn-danger">
+              <i class="icon-trash"></i> Delete
+      </button>
+      <a href="/customers" class="btn">Back to customers</a>
+    </div>
+  </fieldset>
+</form>
+
