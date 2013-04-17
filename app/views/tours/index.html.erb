@@ -2,6 +2,31 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
+
+
+<form class="form-inline">
+  
+    
+    <div class="datetimepicker2 input-append date">
+      <%= label_tag 'start_date', 'Start Date'%>
+      <%= text_field_tag name: 'start_date', 'data-format' => 'dd/MM/yyyy hh:mm:ss' %>
+      <span class="add-on">
+        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+      </span>
+    </div>
+  
+  
+    
+    <div class="datetimepicker2 input-append date">
+      <%= label_tag 'end_date', 'End Date' %>
+      <%= text_field_tag name: 'end_date', 'data-format' => 'dd/MM/yyyy hh:mm:ss' %>
+      <span class="add-on">
+        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+      </span>
+    </div>
+  
+  <button class="btn">Filter</button>
+</form>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -12,6 +37,7 @@
       <th><%= model_class.human_attribute_name(:start_time) %></th>
       <th><%= model_class.human_attribute_name(:duration) %></th>
       <th><%= model_class.human_attribute_name(:seats_available) %></th>
+      <th>Seats Left</th>
       <th><%= model_class.human_attribute_name(:price) %></th>
       <th><%= model_class.human_attribute_name(:status) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
@@ -28,6 +54,7 @@
         <td><%= tour.start_time %></td>
         <td><%= tour.duration %></td>
         <td><%= tour.seats_available %></td>
+        <td>-1</td>
         <td><%= tour.price %></td>
         <td><%= tour.status %></td>
         <td><%=l tour.created_at %></td>

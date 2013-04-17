@@ -17,10 +17,10 @@
 
 
 $(document).ready(function($) {
-	$(function() {
-    	$('.datetimepicker').datetimepicker({
-      		language: 'en',
-      		pick12HourFormat: false
-    	});
+	
+	$('.datetimepicker, .datetimepicker2').datetimepicker({
+  		language: 'en',
+  		pick12HourFormat: false
 	});
+	
 });

@@ -17,3 +17,19 @@
 
 /*body { padding-top: 60px; }*/
 .center {text-align: center;}
+
+.form-horizontal .input-prepend, 
+.form-horizontal .input-append {
+	display: block !important;
+	
+}
+
+.input-prepend.compensate input, 
+.input-append.compensate input {
+	width: 180px;
+}
+
+.form-inline label {
+	margin-right: 10px;
+	margin-left: 10px;
+}

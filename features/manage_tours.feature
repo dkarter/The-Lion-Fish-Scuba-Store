@@ -12,11 +12,16 @@ Feature: Manage Tours
   Scenario: Add A Valid Tour
       When 
 
+  Scenario: Do Not Add Invalid Tour
+      When 
 
-      Scenario: Cancel Tour
-          When 
+  Scenario: Cancel Tour and Refund Difference to Customers
+      When 
 
-Scenario: 
-    When 
+  Scenario: Increase Tour Price
+      When 
+
+  Scenario: Decrease Tour Price and Refund Difference to Customers
+      When 
 
   
