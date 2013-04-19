@@ -1,4 +1,8 @@
 LFSS::Application.routes.draw do
+  resources :bookings
+
+  resources :accounting_transactions
+
   resources :tours
 
   resources :customers

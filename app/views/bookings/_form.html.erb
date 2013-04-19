@@ -1,0 +1,38 @@
+<%= form_for @booking, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :seats, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :seats, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :status, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :status, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :payment_status, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :payment_status, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :cc_reference, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :cc_reference, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :amount_payed, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :amount_payed, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                bookings_path, :class => 'btn' %>
+  </div>
+<% end %>
