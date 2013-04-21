@@ -5,7 +5,7 @@ gem 'rails', '3.2.8'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+
 
 
 # Gems used only for assets and not required
@@ -28,7 +28,12 @@ gem "twitter-bootstrap-rails"
 gem 'foreigner' # adds foriegn key to migrations
 
 
+group :production do
+	gem 'pg'
+end
+
 group :development, :test do
+	gem 'sqlite3'
 	gem 'immigrant'
 	gem 'cucumber'
 	gem 'cucumber-rails', require: false
