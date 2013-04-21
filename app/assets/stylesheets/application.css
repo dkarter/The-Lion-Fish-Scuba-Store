@@ -33,3 +33,17 @@
 	margin-right: 10px;
 	margin-left: 10px;
 }
+
+
+#sidebar {
+	position: relative;
+	top: 25px;
+	margin-bottom: 40px;
+	/*background: #7f7f7f;*/
+}
+
+
+.alert {
+	position: relative;
+	top: 25px;
+}

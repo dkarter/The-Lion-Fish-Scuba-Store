@@ -4,12 +4,12 @@
 </div>
 
 
-<form class="form-inline">
-  
+
+<%= form_tag(tours_path, method: 'get', class: "form-inline" ) do |f| %>
     
     <div class="datetimepicker2 input-append date">
-      <%= label_tag 'start_date', 'Start Date'%>
-      <%= text_field_tag name: 'start_date', 'data-format' => 'dd/MM/yyyy hh:mm:ss' %>
+      <%= label_tag :start_date, 'Start Date'%>
+      <%= text_field_tag :start_date, params[:start_date],'data-format' => 'MM/dd/yyyy' %>
       <span class="add-on">
         <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
       </span>
@@ -18,59 +18,21 @@
   
     
     <div class="datetimepicker2 input-append date">
-      <%= label_tag 'end_date', 'End Date' %>
-      <%= text_field_tag name: 'end_date', 'data-format' => 'dd/MM/yyyy hh:mm:ss' %>
+      <%= label_tag :end_date, 'End Date' %>
+      <%= text_field_tag :end_date, params[:end_date], 'data-format' => 'MM/dd/yyyy' %>
       <span class="add-on">
         <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
       </span>
     </div>
   
-  <button class="btn">Filter</button>
-</form>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:location) %></th>
-      <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:start_time) %></th>
-      <th><%= model_class.human_attribute_name(:duration) %></th>
-      <th><%= model_class.human_attribute_name(:seats_available) %></th>
-      <th>Seats Left</th>
-      <th><%= model_class.human_attribute_name(:price) %></th>
-      <th><%= model_class.human_attribute_name(:status) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @tours.each do |tour| %>
-      <tr>
-        <td><%= link_to tour.id, tour_path(tour) %></td>
-        <td><%= tour.name %></td>
-        <td><%= tour.location %></td>
-        <td><%= tour.description %></td>
-        <td><%= tour.start_time %></td>
-        <td><%= tour.duration %></td>
-        <td><%= tour.seats_available %></td>
-        <td>-1</td>
-        <td><%= tour.price %></td>
-        <td><%= tour.status %></td>
-        <td><%=l tour.created_at %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_tour_path(tour), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      tour_path(tour),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <button class="btn"><i class="icon-search"></i> Search</button>
+<% end %>
+
+
+<% @tours.each do |tour| %>
+  <%= render 'tour_listing', tour: tour %>
+<% end %>
+
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_tour_path,

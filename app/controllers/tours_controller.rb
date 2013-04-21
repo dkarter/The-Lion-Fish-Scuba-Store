@@ -2,7 +2,8 @@ class ToursController < ApplicationController
   # GET /tours
   # GET /tours.json
   def index
-    @tours = Tour.all
+
+    @tours = Tour.search(params[:start_date],params[:end_date])
 
     respond_to do |format|
       format.html # index.html.erb

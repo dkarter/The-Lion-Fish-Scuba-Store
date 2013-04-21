@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:customer) %></th>
       <th><%= model_class.human_attribute_name(:seats) %></th>
       <th><%= model_class.human_attribute_name(:status) %></th>
       <th><%= model_class.human_attribute_name(:payment_status) %></th>
@@ -19,11 +20,12 @@
     <% @bookings.each do |booking| %>
       <tr>
         <td><%= link_to booking.id, booking_path(booking) %></td>
+        <td><%= booking.customer.name %></td>
         <td><%= booking.seats %></td>
         <td><%= booking.status %></td>
         <td><%= booking.payment_status %></td>
         <td><%= booking.cc_reference %></td>
-        <td><%= booking.amount_payed %></td>
+        <td>$<%= booking.amount_payed %></td>
         <td><%=l booking.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

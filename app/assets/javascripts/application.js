@@ -23,4 +23,12 @@ $(document).ready(function($) {
   		pick12HourFormat: false
 	});
 	
+	// $('#sidebar').affix()
+
 });
+
+
+function hide_nav() {
+	$('#main-navbar').hide();
+	$('#main-sidebar').hide();
+}

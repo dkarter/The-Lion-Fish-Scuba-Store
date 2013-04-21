@@ -1,0 +1,73 @@
+<div class="tour-listing well">
+        <span class="tour_id hidden"><%= tour.id %></span> 
+        <div class="well-header">
+            
+            <span class="date label pull-right"><%= tour.start_time.strftime('%m/%d/%Y') %></span>
+            <span class="status label <%= tour.status > 1 ? 'label-important' : 'label-success' %> pull-right">
+              <%= Tour::get_status_type_str(tour.status) %>
+            </span>
+            <h3><%= tour.name %></h3>
+        </div>
+        
+        <div class="inner-well">
+          <div class="tour-details">
+            <p><strong>Start Time:</strong> <%= tour.start_time.strftime('%H:%M') %></p>
+            <p><strong>Duration:</strong> <%= tour.duration %> hrs</p>
+            <p><strong>Location:</strong> <%= tour.location %></p>
+            <p><strong>Total Seats:</strong> <%= tour.seats_available %></p>
+            <p><strong>Price:</strong> $<%= tour.price %>/per person</p>
+            <p><strong>Description:</strong><br /><%= tour.description %></p>
+          </div>
+          <div class="actions">
+ 
+            <button class="btn btn-primary book-tour-btn" <%= 'disabled' if tour.status > 1 %>>Book</button>
+            <button class="btn btn-info tour-details-btn">Details</button>
+ 
+            <div class="btn-group">
+              <button class="btn dropdown-toggle" data-toggle="dropdown">
+                Admin
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                
+                <li><%= link_to t('.edit', :default => t("helpers.links.edit")),
+                        edit_tour_path(tour) %>
+                </li>
+
+                <li><%= link_to t('.destroy', :default => 'Delete'),
+                        tour_path(tour),
+                        :method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } %>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="booking-details hidden">
+              <%= 'No bookings for this tour yet...' if tour.bookings.length == 0 %>
+              <ul>
+              <% tour.bookings.each do |b| %>
+                <li class="<%= 'striked' if b.status > 1 %>"><%= "#{b.customer.name}: #{b.seats} seats" %></li>
+              <% end %>
+              </ul>
+          </div>
+
+          <div class="booking-form">
+            
+            <div class="modal hide fade">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Booking</h3>
+              </div>
+              <div class="modal-body">
+                <p>One fine body…</p>
+              </div>
+              <div class="modal-footer">
+                <a href="#" class="btn">Close</a>
+                <a href="#" class="btn btn-primary">Save</a>
+              </div>
+            </div>
+
+          </div>         
+        </div>
+      </div>

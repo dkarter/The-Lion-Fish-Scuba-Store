@@ -25,8 +25,11 @@ gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
 
+gem 'foreigner' # adds foriegn key to migrations
+
 
 group :development, :test do
+	gem 'immigrant'
 	gem 'cucumber'
 	gem 'cucumber-rails', require: false
 	gem 'rspec'
