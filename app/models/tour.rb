@@ -28,4 +28,10 @@ class Tour < ActiveRecord::Base
     temp = STATUS_TYPES.select{ |x| x[1] == value }.first
     temp ? temp.first : 'Error'
   end
+
+  def self.get_seats_remaining(t_id)
+    seats_taken = Booking.get_seats_taken(t_id)
+    seats_remaining = Tour.find(t_id).seats_available
+    seats_remaining - seats_taken
+  end
 end

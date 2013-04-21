@@ -27,7 +27,13 @@ class BookingsController < ApplicationController
     @booking = Booking.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html {
+        if request.fullpath.include?('bookings_modal')
+          render action: 'new_from_modal', layout: false
+        else
+          render action: 'new'
+        end
+      }
       format.json { render json: @booking }
     end
   end

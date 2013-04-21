@@ -1,0 +1,77 @@
+<div class="control-group">
+    <%= f.label :customer, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :customer_id, Customer.find(:all), :id, :name %>
+    </div>
+  </div>
+  
+    <div class="control-group">
+      <%= f.label :tour, :class => 'control-label' %>
+      <div class="controls">
+        <!-- change to find only non-cancelled. Use scope? -->
+        <% if !params[:tour_id] %>
+          <%= f.collection_select :tour_id, 
+                                  Tour.find(:all), 
+                                  :id, :name %>
+        <% else %>
+          <div><%= Tour.find(params[:tour_id]).name %></div>
+          <%= hidden_field_tag :tour_id, params[:tour_id] %>
+        <% end %>
+      </div>
+    </div>
+  
+  <div class="control-group">
+    <%= f.label :seats, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :seats, :class => 'number_field' %>
+    </div>
+  </div>
+  <!-- need to find a way to add buttons and possibly a hidden field -->
+  <div class="control-group">
+    <%= f.label :status, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :status, Booking::STATUS_TYPES, {prompt: true} %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :payment_status, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :payment_status, Booking::PAYMENT_STATUS_TYPES, { prompt: true } %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :cc_reference, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :cc_reference, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :amount_payed, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :amount_payed, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :cc, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :cc, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :ccv, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :ccv, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :cc_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :cc_name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :cc_exp_date, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :cc_exp_date, :class => 'text_field' %>
+    </div>
+  </div>

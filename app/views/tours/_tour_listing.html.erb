@@ -15,6 +15,7 @@
             <p><strong>Duration:</strong> <%= tour.duration %> hrs</p>
             <p><strong>Location:</strong> <%= tour.location %></p>
             <p><strong>Total Seats:</strong> <%= tour.seats_available %></p>
+            <p><strong>Remaining Seats:</strong> <%= Tour::get_seats_remaining(tour.id) %></p>
             <p><strong>Price:</strong> $<%= tour.price %>/per person</p>
             <p><strong>Description:</strong><br /><%= tour.description %></p>
           </div>

@@ -14,6 +14,14 @@
   <dd><%= @booking.cc_reference %></dd>
   <dt><strong><%= model_class.human_attribute_name(:amount_payed) %>:</strong></dt>
   <dd><%= @booking.amount_payed %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:cc) %>:</strong></dt>
+  <dd><%= @booking.cc %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:ccv) %>:</strong></dt>
+  <dd><%= @booking.ccv %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:cc_name) %>:</strong></dt>
+  <dd><%= @booking.cc_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:cc_exp_date) %>:</strong></dt>
+  <dd><%= @booking.cc_exp_date %></dd>
 </dl>
 
 <div class="form-actions">

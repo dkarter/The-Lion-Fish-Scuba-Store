@@ -7,8 +7,8 @@ LFSS::Application.routes.draw do
 
   resources :customers
 
-  get "welcome/index"
 
+  match '/bookings_modal', to: 'bookings#new', as: 'booking_modal'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -58,7 +58,7 @@ LFSS::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'welcome#index'
+  root :to => 'tours#index'
 
   # See how all your routes lay out with "rake routes"
 
