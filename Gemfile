@@ -30,6 +30,7 @@ gem 'foreigner' # adds foriegn key to migrations
 
 group :production do
 	gem 'pg'
+	gem 'thin'
 end
 
 group :development, :test do
