@@ -18,8 +18,8 @@
   <dd><%= Booking::get_payment_status_name @booking.payment_status %></dd>
   <dt><strong><%= model_class.human_attribute_name(:cc_reference) %>:</strong></dt>
   <dd><%= @booking.cc_reference %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:amount_payed) %>:</strong></dt>
-  <dd><%= @booking.amount_payed %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:amount_paid) %>:</strong></dt>
+  <dd><%= @booking.amount_paid %></dd>
   <dt><strong><%= model_class.human_attribute_name(:cc) %>:</strong></dt>
   <dd><%= @booking.cc %></dd>
   <dt><strong><%= model_class.human_attribute_name(:ccv) %>:</strong></dt>

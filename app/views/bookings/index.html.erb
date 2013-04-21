@@ -11,7 +11,7 @@
       <th><%= model_class.human_attribute_name(:status) %></th>
       <th><%= model_class.human_attribute_name(:payment_status) %></th>
       <th><%= model_class.human_attribute_name(:cc_reference) %></th>
-      <th><%= model_class.human_attribute_name(:amount_payed) %></th>
+      <th><%= model_class.human_attribute_name(:amount_paid) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -25,7 +25,7 @@
         <td><%= booking.status %></td>
         <td><%= booking.payment_status %></td>
         <td><%= booking.cc_reference %></td>
-        <td>$<%= booking.amount_payed %></td>
+        <td>$<%= booking.amount_paid %></td>
         <td><%=l booking.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

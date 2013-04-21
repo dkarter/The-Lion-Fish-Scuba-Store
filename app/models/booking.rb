@@ -3,7 +3,7 @@ class Booking < ActiveRecord::Base
   belongs_to :tour
   has_many :accounting_transactions
 
-  attr_accessible :cc, :cc_exp_date, :cc_name, :ccv, :amount_payed, :cc_reference, :payment_status, :seats, :status, :customer_id, :tour_id
+  attr_accessible :cc, :cc_exp_date, :cc_name, :ccv, :amount_paid, :cc_reference, :payment_status, :seats, :status, :customer_id, :tour_id
   accepts_nested_attributes_for :customer
   
   scope :bookings_by_tour, lambda { |t_id| where('tour_id = ?', t_id) }
