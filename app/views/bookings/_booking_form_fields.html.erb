@@ -15,7 +15,7 @@
                                   :id, :name %>
         <% else %>
           <div><%= Tour.find(params[:tour_id]).name %></div>
-          <%= hidden_field_tag :tour_id, params[:tour_id] %>
+          <%= f.hidden_field :tour_id, value: params[:tour_id] %>
         <% end %>
       </div>
     </div>
