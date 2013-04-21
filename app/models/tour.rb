@@ -24,9 +24,8 @@ class Tour < ActiveRecord::Base
     end
   end
 
-  def self.get_status_type_str(value)
-    temp = STATUS_TYPES.select{ |x| x[1] == value }.first
-    temp ? temp.first : 'Error'
+  def self.get_status_name(value)
+    ApplicationHelper::get_enum_name_by_value(STATUS_TYPES, value)
   end
 
   def self.get_seats_remaining(t_id)

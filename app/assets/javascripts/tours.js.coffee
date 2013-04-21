@@ -17,3 +17,6 @@ $ ->
     book_modal.modal({
        remote: '/bookings_modal?tour_id=' + tour_id
     })
+
+  $('.btn-save-modal').click ->
+    $(@).parent().prev('.modal-body').children('form').submit()

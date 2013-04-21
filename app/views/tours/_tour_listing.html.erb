@@ -4,7 +4,7 @@
             
             <span class="date label pull-right"><%= tour.start_time.strftime('%m/%d/%Y') %></span>
             <span class="status label <%= tour.status > 1 ? 'label-important' : 'label-success' %> pull-right">
-              <%= Tour::get_status_type_str(tour.status) %>
+              <%= Tour::get_status_name(tour.status) %>
             </span>
             <h3><%= tour.name %></h3>
         </div>
@@ -64,8 +64,8 @@
                 <p>There has been an error please contact the developer at jobs at doriankarter dot com</p>
               </div>
               <div class="modal-footer">
-                <a href="#" class="btn">Close</a>
-                <a href="#" class="btn btn-primary">Save</a>
+                <button class="btn">Close</button>
+                <button class="btn btn-primary btn-save-modal">Save</button>
               </div>
             </div>
 
