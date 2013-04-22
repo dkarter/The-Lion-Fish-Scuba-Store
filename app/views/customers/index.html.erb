@@ -2,6 +2,16 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
+<%= form_tag(customers_path, method: 'get', class: "form-inline" ) do |f| %>
+    
+
+      <%= label_tag :email, 'Email'%>
+      <%= text_field_tag :email, params[:email] %>
+
+  
+  <button class="btn"><i class="icon-search"></i> Search</button>
+<% end %>
+
 <table class="table table-striped">
   <thead>
     <tr>

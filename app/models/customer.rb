@@ -3,4 +3,13 @@ class Customer < ActiveRecord::Base
   
   has_many :bookings
 
+  scope :by_email, lambda { |email| where('email like ?', "%#{email}%") }
+
+  def self.search(email)
+    if !email.blank?
+      by_email(email)
+    else
+      find(:all)
+    end
+  end
 end
