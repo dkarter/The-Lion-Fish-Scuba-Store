@@ -25,8 +25,8 @@ gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
 
-gem 'foreigner' # adds foriegn key to migrations
-
+#gem 'foreigner' # adds foriegn key to migrations
+gem 'validates_timeliness'
 
 group :production do
 	gem 'pg'
@@ -34,6 +34,8 @@ group :production do
 end
 
 group :development, :test do
+	gem 'debugger'
+
 	gem 'sqlite3'
 	gem 'immigrant'
 	gem 'cucumber'
@@ -58,5 +60,3 @@ gem 'jbuilder'
 # Deploy with Capistrano
 # gem 'capistrano'
 
-# To use debugger
-# gem 'debugger'

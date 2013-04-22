@@ -20,7 +20,8 @@ $(document).ready(function($) {
 	
 	$('.datetimepicker, .datetimepicker2').datetimepicker({
   		language: 'en',
-  		pick12HourFormat: false
+  		pick12HourFormat: true,
+  		pickSeconds: false
 	});
 	
 	// $('#sidebar').affix()

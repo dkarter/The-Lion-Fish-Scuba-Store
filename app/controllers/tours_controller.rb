@@ -1,4 +1,10 @@
 class ToursController < ApplicationController
+  before_filter :normalize_dates, only: [:create, :update]
+
+  def normalize_dates    
+    params[:tour][:start_time] = ApplicationHelper::normalize_datetime(params[:tour][:start_time])
+  end
+
   # GET /tours
   # GET /tours.json
   def index

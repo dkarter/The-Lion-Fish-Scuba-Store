@@ -2,7 +2,7 @@
         <span class="tour_id hidden"><%= tour.id %></span> 
         <div class="well-header">
             
-            <span class="date label pull-right"><%= tour.start_time.strftime('%m/%d/%Y') %></span>
+            <span class="date label pull-right"><%= tour.start_time.strftime(DATE_FORMAT) if tour.start_time %></span>
             <span class="status label <%= tour.status > 1 ? 'label-important' : 'label-success' %> pull-right">
               <%= Tour::get_status_name(tour.status) %>
             </span>
@@ -11,7 +11,7 @@
         
         <div class="inner-well">
           <div class="tour-details">
-            <p><strong>Start Time:</strong> <%= tour.start_time.strftime('%H:%M') %></p>
+            <p><strong>Start Time:</strong> <%= tour.start_time.strftime('%H:%M') if tour.start_time %></p>
             <p><strong>Duration:</strong> <%= tour.duration %> hrs</p>
             <p><strong>Location:</strong> <%= tour.location %></p>
             <p><strong>Total Seats:</strong> <%= tour.seats_available %></p>

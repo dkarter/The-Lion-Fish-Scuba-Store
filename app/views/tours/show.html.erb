@@ -11,9 +11,9 @@
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
   <dd><%= @tour.description %></dd>
   <dt><strong><%= model_class.human_attribute_name(:start_time) %>:</strong></dt>
-  <dd><%= @tour.start_time %></dd>
+  <dd><%= @tour.start_time.strftime(DATETIME_FORMAT) if @tour.start_time %></dd>
   <dt><strong><%= model_class.human_attribute_name(:duration) %>:</strong></dt>
-  <dd><%= @tour.duration %></dd>
+  <dd><%= @tour.duration %> hrs</dd>
   <dt><strong><%= model_class.human_attribute_name(:seats_available) %>:</strong></dt>
   <dd><%= @tour.seats_available %></dd>
   <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>

@@ -9,7 +9,7 @@
   <dt><strong><%= model_class.human_attribute_name(:tour) %>:</strong></dt>
   <dd><%= @booking.tour.name %></dd>
   <dt><strong>Tour date:</strong></dt>
-  <dd><%= @booking.tour.start_time.strftime('%m/%d/%Y %H:%M') %></dd>
+  <dd><%= @booking.tour.start_time.strftime(DATE_FORMAT) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:seats) %>:</strong></dt>
   <dd><%= @booking.seats %></dd>
   <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>

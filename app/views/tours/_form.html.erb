@@ -20,7 +20,7 @@
   <div class="control-group">
     <%= f.label :start_time, :class => 'control-label' %>
     <div class="controls datetimepicker input-append compensate date">
-      <%= f.text_field :start_time, 'data-format' => 'dd/MM/yyyy hh:mm:ss' %>
+      <%= f.text_field :start_time, 'data-format' => HTML_DATETIME_FORMAT, value: (@tour.start_time.blank? ? '' : @tour.start_time.strftime(DATETIME_FORMAT)) %>
       <span class="add-on">
         <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
       </span>
