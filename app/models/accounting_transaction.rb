@@ -3,12 +3,13 @@ class AccountingTransaction < ActiveRecord::Base
   
   belongs_to :booking
 
-  TRANSACTION_TYPES = [['CC Payment for Booking', 1],
-	              	    ['Refund for Tour Price Decrease', 2],
-	              	    ['Refund for Cancellation', 3]]
+  TRANSACTION_TYPES = [['CC Payment', 1],
+	              	    ['Refund - Price Decrease', 2],
+	              	    ['Refund - Cancellation', 3]]
 
-  def self.get_transaction_type_name(value)
-    ApplicationHelper::get_enum_name_by_value(TRANSACTION_TYPES, value)
+
+  def get_transaction_type_name
+    ApplicationHelper::get_enum_name_by_value(TRANSACTION_TYPES, transaction_type)
   end
 
   def self.new_booking_transaction(booking)

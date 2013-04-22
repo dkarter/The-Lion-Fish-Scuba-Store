@@ -3,6 +3,7 @@ class AccountingTransactionsController < ApplicationController
   # GET /accounting_transactions.json
   def index
     @accounting_transactions = AccountingTransaction.all
+    @sum_total = @accounting_transactions.sum(&:balance)
 
     respond_to do |format|
       format.html # index.html.erb
