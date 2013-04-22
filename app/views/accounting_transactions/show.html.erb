@@ -4,10 +4,14 @@
 </div>
 
 <dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:tour) %>:</strong></dt>
+  <dd><%= link_to @accounting_transaction.booking.tour.name, tour_path(@accounting_transaction.booking.tour) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:customer) %>:</strong></dt>
+  <dd><%= link_to @accounting_transaction.booking.customer.name, customer_path(@accounting_transaction.booking.customer) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:balance) %>:</strong></dt>
-  <dd><%= @accounting_transaction.balance %></dd>
+  <dd><%= money @accounting_transaction.balance %></dd>
   <dt><strong><%= model_class.human_attribute_name(:transaction_type) %>:</strong></dt>
-  <dd><%= @accounting_transaction.transaction_type %></dd>
+  <dd><%= @accounting_transaction.get_transaction_type_name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
   <dd><%= @accounting_transaction.description %></dd>
 </dl>

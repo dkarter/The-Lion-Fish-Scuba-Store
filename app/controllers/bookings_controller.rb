@@ -50,7 +50,7 @@ class BookingsController < ApplicationController
 
     booking_saved = @booking.save
 
-    AccountingTransaction::new_booking_transaction(@booking)
+    AccountingTransaction::paid_booking_transaction(@booking)
 
     respond_to do |format|
       if booking_saved
@@ -73,7 +73,7 @@ class BookingsController < ApplicationController
     booking_saved = @booking.update_attributes(params[:booking])
 
     if is_payment
-      AccountingTransaction::new_booking_transaction(@booking)
+      AccountingTransaction::paid_booking_transaction(@booking)
     end
 
     respond_to do |format|
@@ -96,6 +96,21 @@ class BookingsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to bookings_url }
       format.json { head :no_content }
+    end
+  end
+
+  def cancel_booking
+    @booking = Booking.find(params[:id])
+    cancel_result = @booking.cancel_booking
+
+    respond_to do |format|
+      if cancel_result
+        format.html { redirect_to bookings_path, 
+          flash: { :success => "Booking Cancelled Successfully - #{@booking.get_status_name}" } }
+      else
+        format.html { redirect_to bookings_path, 
+          flash: { :error => "Booking Cannot Be Cancelled At This Time" } }
+      end
     end
   end
 end

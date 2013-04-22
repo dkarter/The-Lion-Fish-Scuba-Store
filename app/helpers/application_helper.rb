@@ -11,4 +11,9 @@ module ApplicationHelper
 	def self.normalize_datetime(datetime_str)
 		DateTime.strptime(datetime_str, DATETIME_FORMAT)
 	end
+	
+	def money(value)
+    color = value > 0 ? '"green"' : '"red"'
+    "<span class=#{color}>$#{value}</span>".html_safe
+  end
 end

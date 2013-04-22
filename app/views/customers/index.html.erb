@@ -5,7 +5,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:email) %></th>
       <th><%= model_class.human_attribute_name(:address) %></th>
@@ -18,8 +17,7 @@
   <tbody>
     <% @customers.each do |customer| %>
       <tr>
-        <td><%= link_to customer.id, customer_path(customer) %></td>
-        <td><%= customer.name %></td>
+        <td><%= link_to customer.name, customer_path(customer) %></td>
         <td><%= customer.email %></td>
         <td><%= truncate(customer.address, length: 15) %></td>
         <td><%= customer.city %></td>

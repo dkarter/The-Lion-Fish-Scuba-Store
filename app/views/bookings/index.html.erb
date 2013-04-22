@@ -25,8 +25,8 @@
         <td><%= booking.tour.name if booking.tour %></td>
         <td><%= booking.tour.start_time.strftime(DATE_FORMAT) if booking.tour %></td>
         <td><%= booking.seats %></td>
-        <td><%= Booking::get_status_name booking.status %></td>
-        <td><%= Booking::get_payment_status_name booking.payment_status %></td>
+        <td><%= booking.get_status_name %></td>
+        <td><%= booking.get_payment_status_name %></td>
         <td><%= booking.cc_reference %></td>
         <td>$<%= booking.amount_paid %></td>
         
@@ -38,7 +38,7 @@
             </button>
             <ul class="dropdown-menu">
               <li><%= link_to "View", booking_path(booking) %></li>
-              <li><a href="#">Cancel Booking</a></li>
+              <li><%= link_to "Cancel Booking", cancel_booking_path(booking) %></li>
               <li><%= link_to t('.edit', :default => t("helpers.links.edit")), edit_booking_path(booking) %></li>
               
             </ul>

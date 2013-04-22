@@ -15,7 +15,8 @@ respond_to :json
   # GET /customers/1.json
   def show
     @customer = Customer.find(params[:id])
-
+    @sum_total = Booking::get_total_paid_per_customer(params[:id])
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @customer }

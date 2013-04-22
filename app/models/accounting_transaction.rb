@@ -12,7 +12,7 @@ class AccountingTransaction < ActiveRecord::Base
     ApplicationHelper::get_enum_name_by_value(TRANSACTION_TYPES, transaction_type)
   end
 
-  def self.new_booking_transaction(booking)
+  def self.paid_booking_transaction(booking)
     if booking.payment_status == 2 # paid in full
       description = "Payment by '#{booking.customer.name}' for '#{booking.tour.name}'"
       trans = AccountingTransaction.create(balance: booking.amount_paid, 
@@ -23,4 +23,33 @@ class AccountingTransaction < ActiveRecord::Base
       trans.save
     end
   end
+
+  def self.refund_booking_transaction(booking, cancel_by = nil)
+    cancel_by = booking.customer.name if !cancel_by
+
+    # verify paid in full and active booking
+    if booking.payment_status == 2 && booking.status == 1
+      description = "Cancellation by '#{cancel_by}' for '#{booking.tour.name}'"
+      
+      trans = AccountingTransaction.create(balance: (0 - booking.amount_paid), 
+                                           booking: booking, 
+                                           description: description,
+                                           transaction_type: 3)
+
+      trans.save
+    end
+  end
+
+  def self.refund_booking_price_decrease_transaction(booking)
+    if booking.payment_status == 2 # paid in full
+      description = "Payment by '#{booking.customer.name}' for '#{booking.tour.name}'"
+      trans = AccountingTransaction.create(balance: booking.amount_paid, 
+                                           booking: booking, 
+                                           description: description,
+                                           transaction_type: 2)
+
+      trans.save
+    end
+  end
+
 end
