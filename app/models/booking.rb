@@ -22,4 +22,8 @@ class Booking < ActiveRecord::Base
   def self.get_payment_status_name(value)
     ApplicationHelper::get_enum_name_by_value(PAYMENT_STATUS_TYPES, value)
   end
+
+  def cancel_booking
+    
+  end
 end
