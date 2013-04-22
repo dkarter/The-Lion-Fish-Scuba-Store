@@ -15,11 +15,9 @@
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               accounting_transactions_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_accounting_transaction_path(@accounting_transaction), :class => 'btn' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               accounting_transaction_path(@accounting_transaction),
               :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure? This may cause inconsistencies in the database!')) },
               :class => 'btn btn-danger' %>
 </div>

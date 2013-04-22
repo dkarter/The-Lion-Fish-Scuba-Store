@@ -15,7 +15,7 @@ $ ->
     book_modal = $(@).parent().nextAll('div.booking-form').children('div.modal')
     tour_id = $(@).parent().parent().parent().children('.tour_id').html()
     book_modal.modal({
-       remote: '/bookings_modal?tour_id=' + tour_id
+       remote: "/bookings_modal?tour_id=#{tour_id}"
     })
 
   $('.btn-save-modal').click ->

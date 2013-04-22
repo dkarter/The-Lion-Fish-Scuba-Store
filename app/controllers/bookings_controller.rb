@@ -48,8 +48,12 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(params[:booking])
 
+    booking_saved = @booking.save
+
+    AccountingTransaction::new_booking_transaction(@booking)
+
     respond_to do |format|
-      if @booking.save
+      if booking_saved
         format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
         format.json { render json: @booking, status: :created, location: @booking }
       else
@@ -64,8 +68,16 @@ class BookingsController < ApplicationController
   def update
     @booking = Booking.find(params[:id])
 
+    is_payment = @booking.payment_status != 2 && params[:booking][:payment_status] == '2'
+
+    booking_saved = @booking.update_attributes(params[:booking])
+
+    if is_payment
+      AccountingTransaction::new_booking_transaction(@booking)
+    end
+
     respond_to do |format|
-      if @booking.update_attributes(params[:booking])
+      if booking_saved
         format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
         format.json { head :no_content }
       else
