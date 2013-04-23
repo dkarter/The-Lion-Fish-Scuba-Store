@@ -1,3 +1,19 @@
+<% if @tour %>
+  <script type="text/javascript">
+    
+    var tour_price = <%= @tour.price %>;
+    
+    $('#booking_seats').keyup(function() {
+      if ($(this).val()) {
+        var total = tour_price * parseInt($(this).val());
+        $('#booking_amount_paid').val(total);
+      } else {
+        $('#booking_amount_paid').val('');
+      }
+    });
+
+  </script>
+<% end %>
 <div class="control-group">
     <%= f.label :customer, :class => 'control-label' %>
     <div class="controls">
@@ -9,12 +25,12 @@
       <%= f.label :tour, :class => 'control-label' %>
       <div class="controls">
         <!-- change to find only non-cancelled. Use scope? -->
-        <% if !params[:tour_id] %>
+        <% if !@tour %>
           <%= f.collection_select :tour_id, 
                                   Tour.find(:all), 
                                   :id, :name %>
         <% else %>
-          <span class="label label-info drop-5px"><%= Tour.find(params[:tour_id]).name %></span>
+          <span class="label label-info drop-5px"><%= @tour.name %></span>
           <%= f.hidden_field :tour_id, value: params[:tour_id] %>
         <% end %>
       </div>
@@ -22,15 +38,18 @@
   
   <div class="control-group">
     <%= f.label :seats, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :seats, :class => 'number_field' %>
+    <div class="controls <%= 'input-append' if @tour %>">
+      <%= f.number_field :seats, :class => 'number_field seats' %>
+      <% if @tour %>
+        <span class="add-on">&times; $<%= @tour.price %></span>
+      <% end %>
     </div>
   </div>
-  <!-- need to find a way to add buttons and possibly a hidden field -->
+
   <div class="control-group">
     <%= f.label :status, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select :status, Booking::STATUS_TYPES %>
+      <span class="label label-info drop-5px"><%= @tour ? 'Active' : @booking.status_name %></span>
     </div>
   </div>
   <div class="control-group">

@@ -25,8 +25,8 @@
         <td><%= booking.tour.name if booking.tour %></td>
         <td><%= booking.tour.start_time.strftime(DATE_FORMAT) if booking.tour %></td>
         <td><%= booking.seats %></td>
-        <td><%= booking.get_status_name %></td>
-        <td><%= booking.get_payment_status_name %></td>
+        <td><%= booking.status_name %></td>
+        <td><%= booking.payment_status_name %></td>
         <td><%= booking.cc_reference %></td>
         <td>$<%= booking.amount_paid %></td>
         

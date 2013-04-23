@@ -34,7 +34,7 @@
       <tr>
         <td><%= link_to booking.tour.name, booking_path(booking) %></td>
         <td><%= l booking.created_at %></td>
-        <td><%= booking.get_status_name %></td>
+        <td><%= booking.status_name %></td>
         <td><%= f_payment booking.amount_paid, booking.status, booking.payment_status %></td>
         
       </tr>

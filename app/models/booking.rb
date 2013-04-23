@@ -30,11 +30,11 @@ class Booking < ActiveRecord::Base
 
 
   # Instance Methods
-  def get_status_name
+  def status_name
     ApplicationHelper::get_enum_name_by_value(STATUS_TYPES, status)
   end
 
-  def get_payment_status_name
+  def payment_status_name
     ApplicationHelper::get_enum_name_by_value(PAYMENT_STATUS_TYPES, payment_status)
   end
 

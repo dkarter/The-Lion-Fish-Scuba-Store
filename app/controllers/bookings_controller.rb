@@ -25,6 +25,8 @@ class BookingsController < ApplicationController
   # GET /bookings/new.json
   def new
     @booking = Booking.new
+    @tour = Tour.find(params[:tour_id]) if params[:tour_id]
+      
 
     respond_to do |format|
       format.html {
@@ -47,7 +49,8 @@ class BookingsController < ApplicationController
   # POST /bookings.json
   def create
     @booking = Booking.new(params[:booking])
-
+    @booking.status = 1
+    
     booking_saved = @booking.save
 
     AccountingTransaction::paid_booking_transaction(@booking)
@@ -106,7 +109,7 @@ class BookingsController < ApplicationController
     respond_to do |format|
       if cancel_result
         format.html { redirect_to bookings_path, 
-          flash: { :success => "Booking Cancelled Successfully - #{@booking.get_status_name}" } }
+          flash: { :success => "Booking Cancelled Successfully - #{@booking.status_name}" } }
       else
         format.html { redirect_to bookings_path, 
           flash: { :error => "Booking Cannot Be Cancelled At This Time" } }
