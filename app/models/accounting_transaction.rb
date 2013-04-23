@@ -42,8 +42,8 @@ class AccountingTransaction < ActiveRecord::Base
 
   def self.refund_booking_price_decrease_transaction(booking)
     if booking.payment_status == 2 # paid in full
-      description = "Payment by '#{booking.customer.name}' for '#{booking.tour.name}'"
-      trans = AccountingTransaction.create(balance: booking.amount_paid, 
+      description = "Price decrease refund for: '#{booking.customer.name}' Tour: '#{booking.tour.name}'"
+      trans = AccountingTransaction.create(balance: (0 - booking.amount_paid), 
                                            booking: booking, 
                                            description: description,
                                            transaction_type: 2)

@@ -64,6 +64,7 @@ class ToursController < ApplicationController
   # PUT /tours/1.json
   def update
     @tour = Tour.find(params[:id])
+    @tour.change_price(params[:tour][:price])
 
     respond_to do |format|
       if @tour.update_attributes(params[:tour])

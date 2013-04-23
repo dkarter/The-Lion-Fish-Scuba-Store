@@ -5,7 +5,7 @@ class Tour < ActiveRecord::Base
 
   # validators
   validates_presence_of :name, :duration, :location, :price, :seats_available, :start_time, :status
-  #validates :start_time, format: /(?=\d)^(?:(?!(?:10\D(?:0?[5-9]|1[0-4])\D(?:1582))|(?:0?9\D(?:0?[3-9]|1[0-3])\D(?:1752)))((?:0?[13578]|1[02])|(?:0?[469]|11)(?!\/31)(?!-31)(?!\.31)|(?:0?2(?=.?(?:(?:29.(?!000[04]|(?:(?:1[^0-6]|[2468][^048]|[3579][^26])00))(?:(?:(?:\d\d)(?:[02468][048]|[13579][26])(?!\x20BC))|(?:00(?:42|3[0369]|2[147]|1[258]|09)\x20BC))))))|(?:0?2(?=.(?:(?:\d\D)|(?:[01]\d)|(?:2[0-8])))))([-.\/])(0?[1-9]|[12]\d|3[01])\2(?!0000)((?=(?:00(?:4[0-5]|[0-3]?\d)\x20BC)|(?:\d{4}(?!\x20BC)))\d{4}(?:\x20BC)?)(?:$|(?=\x20\d)\x20))?((?:(?:0?[1-9]|1[012])(?::[0-5]\d){0,2}(?:\x20[aApP][mM]))|(?:[01]\d|2[0-3])(?::[0-5]\d){1,2})?$/
+  
 
   # enum types
   STATUS_TYPES = [['Active', 1],
@@ -16,6 +16,8 @@ class Tour < ActiveRecord::Base
   default_scope order('start_time asc')
   scope :starting_at, lambda {|date = nil| where('start_time >= ?', date) }
   scope :ending_at, lambda {|date = nil| where('start_time <= ?', date) }
+  #scope :paid_active_bookings, bookings.where('status')
+
 
   def self.search(starting_date, ending_date)
     if !starting_date.blank? && !ending_date.blank?
@@ -37,4 +39,44 @@ class Tour < ActiveRecord::Base
     seats_remaining = Tour.find(t_id).seats_available
     seats_remaining - seats_taken
   end
+
+  # def price=(val)
+  #   val = val.to_f
+  #   if price && price > val
+  #     decrease_price price, val
+  #   end
+    
+  #   price = val
+  # end
+
+  def change_price(new_price)
+    if price && new_price
+      new_price = new_price.to_f
+      amount_diff = price - new_price
+      
+      if price > new_price  
+        bookings.each do |b|
+          if b.is_active_paid?(price)
+            # make adjustment to bookings
+            b.amount_paid -= amount_diff
+            b.save
+
+            # add refund transaction entry
+            AccountingTransaction::refund_booking_price_decrease_transaction(b)
+          end
+        end
+      end
+
+    end
+  end
+
+  private
+
+  def get_paid_active_bookings
+    result = Array.new
+    bookings.each { |b| result.push(b) if b.is_active_paid? }
+    result
+  end
+
+  
 end
