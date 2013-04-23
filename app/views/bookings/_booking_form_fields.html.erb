@@ -14,7 +14,7 @@
                                   Tour.find(:all), 
                                   :id, :name %>
         <% else %>
-          <div><%= Tour.find(params[:tour_id]).name %></div>
+          <span class="label label-info drop-5px"><%= Tour.find(params[:tour_id]).name %></span>
           <%= f.hidden_field :tour_id, value: params[:tour_id] %>
         <% end %>
       </div>
@@ -30,27 +30,31 @@
   <div class="control-group">
     <%= f.label :status, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select :status, Booking::STATUS_TYPES, {prompt: true} %>
+      <%= f.select :status, Booking::STATUS_TYPES %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :payment_status, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select :payment_status, Booking::PAYMENT_STATUS_TYPES, { prompt: true } %>
+      <%= f.select :payment_status, Booking::PAYMENT_STATUS_TYPES %>
     </div>
   </div>
+  
   <div class="control-group">
-    <%= f.label :cc_reference, :class => 'control-label' %>
+    <%= f.label :amount_paid, :class => 'control-label' %>
+    <div class="controls input-prepend compensate">
+      <span class="add-on">$</span>
+      <%= f.text_field :amount_paid, :class => 'text_field' %>
+    </div>
+  </div>
+  
+  <div class="control-group">
+    <%= f.label 'CC Reference', :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :cc_reference, :class => 'text_field' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :amount_paid, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :amount_paid, :class => 'text_field' %>
-    </div>
-  </div>
+
   <div class="control-group">
     <%= f.label :cc, :class => 'control-label' %>
     <div class="controls">

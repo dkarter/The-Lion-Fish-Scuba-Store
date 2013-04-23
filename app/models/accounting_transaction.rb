@@ -25,11 +25,15 @@ class AccountingTransaction < ActiveRecord::Base
   end
 
   def self.refund_booking_transaction(booking, cancel_by = nil)
-    cancel_by = booking.customer.name if !cancel_by
+
 
     # verify paid in full and active booking
     if booking.payment_status == 2 && booking.status == 1
-      description = "Cancellation by '#{cancel_by}' for '#{booking.tour.name}'"
+      if cancel_by
+        description = "Cancellation by '#{cancel_by}' for '#{booking.customer.name}' Tour: '#{booking.tour.name}'"
+      else
+        description = "Cancellation by '#{booking.customer.name}' for '#{booking.tour.name}'"
+      end
       
       trans = AccountingTransaction.create(balance: (0 - booking.amount_paid), 
                                            booking: booking, 

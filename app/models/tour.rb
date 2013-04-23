@@ -18,7 +18,7 @@ class Tour < ActiveRecord::Base
   scope :ending_at, lambda {|date = nil| where('start_time <= ?', date) }
   #scope :paid_active_bookings, bookings.where('status')
 
-
+  # Static Methods
   def self.search(starting_date, ending_date)
     if !starting_date.blank? && !ending_date.blank?
       starting_date = ApplicationHelper::normalize_date(starting_date)
@@ -30,24 +30,18 @@ class Tour < ActiveRecord::Base
     end
   end
 
-  def self.get_status_name(value)
-    ApplicationHelper::get_enum_name_by_value(STATUS_TYPES, value)
-  end
-
   def self.get_seats_remaining(t_id)
     seats_taken = Booking.get_seats_taken(t_id)
     seats_remaining = Tour.find(t_id).seats_available
     seats_remaining - seats_taken
   end
 
-  # def price=(val)
-  #   val = val.to_f
-  #   if price && price > val
-  #     decrease_price price, val
-  #   end
-    
-  #   price = val
-  # end
+
+  # Public Instance Methods
+
+  def status_name
+    ApplicationHelper::get_enum_name_by_value(STATUS_TYPES, status)
+  end
 
   def change_price(new_price)
     if price && new_price
@@ -68,6 +62,31 @@ class Tour < ActiveRecord::Base
       end
 
     end
+  end
+
+  def cancel_tour
+    return { :error =>  "Tour already cancelled..." } if status == 2
+
+    amount_refunded = 0
+    bookings_refunded = 0
+
+    bookings.each do |b|
+      if b.is_active_paid?(price)
+        # add refund transaction entry
+        AccountingTransaction::refund_booking_transaction(b,'Owner')
+
+        # make adjustment to bookings
+        b.status = 2 # cancelled - refunded
+        b.save
+
+        amount_refunded += b.amount_paid
+        bookings_refunded += 1
+      end
+    end
+    self.status = 2
+
+    self.save
+    { :success => "Cancelled tour and refunded all bookings. Total refunded: $#{amount_refunded} for #{bookings_refunded}" }
   end
 
   private

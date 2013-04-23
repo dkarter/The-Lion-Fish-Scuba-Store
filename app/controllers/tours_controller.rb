@@ -88,4 +88,13 @@ class ToursController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def cancel_tour
+    @tour = Tour.find(params[:id])
+    cancel_result = @tour.cancel_tour
+
+    respond_to do |format|
+        format.html { redirect_to tours_path, flash: cancel_result }
+    end
+  end
 end

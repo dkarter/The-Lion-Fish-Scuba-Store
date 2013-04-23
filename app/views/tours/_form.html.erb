@@ -48,12 +48,16 @@
   <div class="control-group">
     <%= f.label :status, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select :status, Tour::STATUS_TYPES, {prompt: true} %>
+      <span class="status label <%= @tour.status > 1 ? 'label-important' : 'label-success' %> drop-5px">
+              <%= @tour.status_name %>
+      </span>
     </div>
   </div>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to "Cancel Tour",
+                cancel_tour_path(@tour), :class => 'btn btn-danger' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 tours_path, :class => 'btn' %>
   </div>

@@ -11,6 +11,7 @@ LFSS::Application.routes.draw do
   match '/bookings_modal', to: 'bookings#new', as: 'booking_modal'
 
   match "/cancel_booking/:id", to: "bookings#cancel_booking", as: "cancel_booking"
+  match "/cancel_tour/:id", to: "tours#cancel_tour", as: "cancel_tour"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

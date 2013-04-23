@@ -4,7 +4,7 @@
             
             <span class="date label pull-right"><%= tour.start_time.strftime(DATE_FORMAT) if tour.start_time %></span>
             <span class="status label <%= tour.status > 1 ? 'label-important' : 'label-success' %> pull-right">
-              <%= Tour::get_status_name(tour.status) %>
+              <%= tour.status_name %>
             </span>
             <h3><%= tour.name %></h3>
         </div>
@@ -33,7 +33,7 @@
                 
                 <li><%= link_to t('.edit', :default => t("helpers.links.edit")), edit_tour_path(tour) %></li>
 
-                <li><a href="#">Cancel Tour</a></li>
+                <li><%= link_to 'Cancel Tour', cancel_tour_path(tour) %></li>
               </ul>
             </div>
           </div>
@@ -42,7 +42,7 @@
               <%= 'No bookings for this tour yet...' if tour.bookings.length == 0 %>
               <ul>
               <% tour.bookings.each do |b| %>
-                <li class="<%= 'striked' if b.status > 1 %>"><%= "#{b.customer.name}: #{b.seats} seats" %></li>
+                <li class="<%= 'striked' if !b.is_active_paid? %>"><%= "#{b.customer.name}: #{b.seats} seats" %></li>
               <% end %>
               </ul>
           </div>
@@ -58,7 +58,7 @@
                 <p>There has been an error please contact the developer at jobs at doriankarter dot com</p>
               </div>
               <div class="modal-footer">
-                <button class="btn">Close</button>
+                <button class="btn" data-dismiss="modal">Close</button>
                 <button class="btn btn-primary btn-save-modal">Save</button>
               </div>
             </div>

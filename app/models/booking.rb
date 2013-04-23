@@ -42,6 +42,8 @@ class Booking < ActiveRecord::Base
     active_paid = status == 1 && payment_status == 2
     if price
       active_paid && amount_paid >= price
+    else
+      active_paid
     end
   end
 
