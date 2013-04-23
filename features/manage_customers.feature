@@ -6,14 +6,14 @@ Feature: Manage Customers
 
   Scenario: Customers List
     Given I have customers named "John Schultz", "Cara Cummings"
-    When I go to the "list of customers" page
+    When I go to the "customers list" page
     Then I should see "John Schultz"
     And I should see "Cara Cummings"
 
 
   Scenario: Add Valid Customer
     Given I have 0 customers
-    And I am on the "list of customers" page
+    And I am on the "customers list" page
     When I click link "New"
     And I fill in "Name" with "Johnny"
     And I fill in "Email" with "johnny@domain.com"
@@ -26,7 +26,7 @@ Feature: Manage Customers
   Scenario: Delete A Customer
       Given I have customers named "ABC XYZ", "BCD EFG"
       And I have 2 customers
-      And I am on the "list of customers" page
+      And I am on the "customers list" page
       When I press on "Destroy"
   
 

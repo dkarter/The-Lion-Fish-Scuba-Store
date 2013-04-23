@@ -16,6 +16,7 @@ respond_to :json
   def show
     @customer = Customer.find(params[:id])
     @sum_total = Booking::get_total_paid_per_customer(params[:id])
+    @sum_total = 0 if @sum_total && @sum_total < 0
     
     respond_to do |format|
       format.html # show.html.erb

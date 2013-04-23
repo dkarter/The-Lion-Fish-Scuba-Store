@@ -4,6 +4,7 @@ class AccountingTransactionsController < ApplicationController
   def index
     @accounting_transactions = AccountingTransaction.all
     @sum_total = @accounting_transactions.sum(&:balance)
+    @sum_total = 0 if @sum_total && @sum_total < 0
 
     respond_to do |format|
       format.html # index.html.erb

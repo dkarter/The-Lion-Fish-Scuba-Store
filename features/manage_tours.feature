@@ -4,7 +4,11 @@ Feature: Manage Tours
   I want to be able to manage tours
 
   Scenario: Tour List
-      When I
+      Given I have tours named "Tour 1", "Tour 2", "Last Tour"
+      When I go to the "tours list" page
+      Then I should see "Tour 1"
+      And I should see "Tour 2"
+      And I should see "Last Tour"
 
   Scenario: Tour List Filtered By Date
       When I
