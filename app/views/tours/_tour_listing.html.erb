@@ -3,7 +3,7 @@
         <div class="well-header">
             
             <span class="date label pull-right"><%= tour.start_time.strftime(DATE_FORMAT) if tour.start_time %></span>
-            <span class="status label <%= tour.status > 1 ? 'label-important' : 'label-success' %> pull-right">
+            <span class="status label <%= tour.status && tour.status > 1 ? 'label-important' : 'label-success' %> pull-right">
               <%= tour.status_name %>
             </span>
             <h3><%= tour.name %></h3>
@@ -21,7 +21,7 @@
           </div>
           <div class="actions">
  
-            <button class="btn btn-primary book-tour-btn" <%= 'disabled' if tour.status > 1 %>>Book</button>
+            <button class="btn btn-primary book-tour-btn" <%= 'disabled' if !tour.status || tour.status > 1 %>>Book</button>
             <button class="btn btn-info tour-details-btn">Details</button>
  
             <div class="btn-group">

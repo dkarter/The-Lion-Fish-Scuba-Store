@@ -4,7 +4,7 @@ class Tour < ActiveRecord::Base
   has_many :bookings
 
   # validators
-  validates_presence_of :name, :duration, :location, :price, :seats_available, :start_time, :status
+  validates_presence_of :name, :duration, :location, :price, :seats_available, :start_time
   
 
   # enum types

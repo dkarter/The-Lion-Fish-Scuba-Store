@@ -48,7 +48,8 @@ class ToursController < ApplicationController
   # POST /tours.json
   def create
     @tour = Tour.new(params[:tour])
-
+    @tour.status = 1
+    
     respond_to do |format|
       if @tour.save
         format.html { redirect_to @tour, notice: 'Tour was successfully created.' }

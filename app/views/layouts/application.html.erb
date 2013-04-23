@@ -41,6 +41,10 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
+        <div class="span9">
+          <%= bootstrap_flash %>
+          <%= yield %>
+        </div>
         <div class="span3">
           <div id="sidebar" class="well sidebar-nav" data-spy="affix" data-offset-top="200">
             <h4>About Us</h4>
@@ -50,10 +54,6 @@
             <p>Our instructors are the top in the industry even though most of them quit just recently. We are still offering tours though, don't worry. You'll just have to deal with the sharks yourself.</p>
           </div><!--/.well -->
         </div><!--/span-->
-        <div class="span9">
-          <%= bootstrap_flash %>
-          <%= yield %>
-        </div>
       </div><!--/row-->
 
       <footer>
