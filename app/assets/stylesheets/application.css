@@ -69,3 +69,8 @@
 	position:relative; 
 	top:5px;
 }
+
+.dl-horizontal dd {
+	display: inline-block;
+	margin-left: 5px !important;
+}

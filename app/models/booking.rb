@@ -4,9 +4,23 @@ class Booking < ActiveRecord::Base
   has_many :accounting_transactions
 
   attr_accessible :cc, :cc_exp_date, :cc_name, :ccv, :amount_paid, :cc_reference, :payment_status, :seats, :status, :customer_id, :tour_id
-  accepts_nested_attributes_for :customer
+  accepts_nested_attributes_for :customer, :tour
   
-  #scopes
+
+
+  # Validations
+  validates_presence_of :customer, :tour, :seats, :status, :payment_status, :amount_paid
+  validates :seats, :numericality => { :only_integer => true, greater_than: 0 }
+  validates :amount_paid, :numericality => { greater_than: 0 }
+  #VALID_CC_REGEX = /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/
+  validates :cc, length: { minimum: 12, maximum: 19 }, unless: "cc.blank?"
+  validates :cc_name, length: { maximum: 30 }, format: { :with => /^[^0-9`!@#\$%\^&*+_=]+$/ }, unless: "cc_name.blank?"
+  validates :ccv, length: { maximum: 4 }, unless: "ccv.blank?"
+  validates :cc_exp_date, unless: "cc_exp_date.blank?", format: { with: /((0[1-9])|(1[0-2]))\/((20)(1([2-9])|([2-9])([0-9])))/ }
+
+
+
+  # Named Scopes
   scope :by_tour, lambda { |t_id| where('tour_id = ?', t_id) }
   scope :by_customer, lambda { |c_id| where('customer_id = ?', c_id) }
   scope :made_profit, where(status: [1,3], payment_status: 2)

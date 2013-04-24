@@ -5,11 +5,11 @@ module ApplicationHelper
 	end
 
 	def self.normalize_date(date_str)
-		Date.strptime(date_str, DATE_FORMAT)
+		Date.strptime(date_str, DATE_FORMAT) unless date_str.blank?
 	end
 
 	def self.normalize_datetime(datetime_str)
-		DateTime.strptime(datetime_str, DATETIME_FORMAT)
+    DateTime.strptime(datetime_str, DATETIME_FORMAT) unless datetime_str.blank?
 	end
 	
 	def money(value)

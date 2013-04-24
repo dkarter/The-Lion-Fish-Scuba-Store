@@ -67,34 +67,35 @@
     </div>
   </div>
   
+  
   <div class="control-group">
-    <%= f.label 'CC Reference', :class => 'control-label' %>
+    <%= f.label :cc_name, 'Name on Card', :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :cc_reference, :class => 'text_field' %>
-    </div>
-  </div>
-
-  <div class="control-group">
-    <%= f.label :cc, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :cc, :class => 'text_field' %>
+      <%= f.text_field :cc_name, :class => 'text_field', placeholder: 'John Smith' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :ccv, :class => 'control-label' %>
+    <%= f.label :cc, 'CC Number', :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :ccv, :class => 'text_field' %>
+      <%= f.text_field :cc, :class => 'text_field', placeholder: 'xxxx-xxxx-xxxx-xxxx' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :cc_name, :class => 'control-label' %>
+    <%= f.label :cc_exp_date, 'CC Expiration', :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :cc_name, :class => 'text_field' %>
+      <%= f.text_field :cc_exp_date, :class => 'text_field', placeholder: 'MM/YYYY'  %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :cc_exp_date, :class => 'control-label' %>
+    <%= f.label :ccv, 'CCV', :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :cc_exp_date, :class => 'text_field' %>
+      <%= f.text_field :ccv, :class => 'text_field', placeholder: '123' %>
+    </div>
+  </div>
+  
+  <div class="control-group">
+    <%= f.label :cc_reference, 'CC Reference', :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :cc_reference, :class => 'text_field', placeholder: 'XE3234DK234' %>
     </div>
   </div>

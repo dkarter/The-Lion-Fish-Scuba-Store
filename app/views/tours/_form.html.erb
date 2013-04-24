@@ -20,7 +20,10 @@
   <div class="control-group">
     <%= f.label :start_time, :class => 'control-label' %>
     <div class="controls datetimepicker input-append compensate date">
-      <%= f.text_field :start_time, 'data-format' => HTML_DATETIME_FORMAT, value: (@tour.start_time.blank? ? '' : @tour.start_time.strftime(DATETIME_FORMAT)) %>
+      <%= f.text_field :start_time, 
+                      'data-format' => HTML_DATETIME_FORMAT, 
+                      placeholder: '04/20/2013 04:20 PM',
+                      value: (@tour.start_time.blank? ? '' : @tour.start_time.strftime(DATETIME_FORMAT)) %>
       <span class="add-on">
         <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
       </span>
@@ -29,7 +32,7 @@
   <div class="control-group">
     <%= f.label :duration, 'Duration (hrs)', :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :duration, :class => 'text_field' %>
+      <%= f.text_field :duration, :class => 'text_field', placeholder: '1.5 (equals 1hr 30m)' %>
     </div>
   </div>
   <div class="control-group">
@@ -42,7 +45,7 @@
     <%= f.label :price, 'Price', :class => 'control-label' %>
     <div class="controls input-prepend compensate">
       <span class="add-on">$</span>
-      <%= f.text_field :price, :class => 'text_field' %>
+      <%= f.text_field :price, :class => 'text_field', placeholder: '20' %>
     </div>
   </div>
   <div class="control-group">

@@ -9,7 +9,7 @@
     
     <div class="datetimepicker2 input-append date">
       <%= label_tag :start_date, 'Start Date'%>
-      <%= text_field_tag :start_date, params[:start_date],'data-format' => HTML_DATE_FORMAT %>
+      <%= text_field_tag :start_date, params[:start_date], placeholder: '04/20/2013','data-format' => HTML_DATE_FORMAT %>
       <span class="add-on">
         <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
       </span>
@@ -19,7 +19,7 @@
     
     <div class="datetimepicker2 input-append date">
       <%= label_tag :end_date, 'End Date' %>
-      <%= text_field_tag :end_date, params[:end_date], 'data-format' => HTML_DATE_FORMAT %>
+      <%= text_field_tag :end_date, params[:end_date], placeholder: '04/20/2013', 'data-format' => HTML_DATE_FORMAT %>
       <span class="add-on">
         <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
       </span>
